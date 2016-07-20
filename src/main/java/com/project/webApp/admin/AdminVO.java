@@ -24,7 +24,7 @@ public class AdminVO {
 	private String cafeshutdown;
 	private String cafedelivery;
 	private String cafewritedate;
-	
+	String aaa;
 	///
 	public AdminVO(){}
 
