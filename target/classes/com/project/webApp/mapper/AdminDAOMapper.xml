@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.webApp.admin.AdminDAOInterface">
+	<select id="selectAll" resultType="com.project.webApp.admin.AdminVO">
+		select num, cafename, cafemainmenu, cafefavor, cafestar, cafewritedate from cafelist order by num desc
+	</select>
+	<select id="totalRecordCount" resultType="int">
+		select count(num) from cafelist
+	</select>
+	<insert id="insertRecord" parameterType="com.project.webApp.admin.AdminVO">
+		insert into cafelist(num, cafename, cafemainmenu, cafephone, cafeaddr, latitude, longitude, cafefavor, cafepic1, cafepic2, cafepic3, cafepic4, cafepic5, cafestar, cafeparking, cafeholi, cafetime, cafemenupic1, cafemenupic2, cafeshutdown, cafedelivery, cafewritedate) 
+		values(cafelistSq.nextVal, #{cafename}, #{cafemainmenu}, #{cafephone}, #{cafeaddr}, #{latitude}, #{longitude}, #{cafefavor}, #{cafepic1}, #{cafepic2}, #{cafepic3}, #{cafepic4}, #{cafepic5}, #{cafestar}, #{cafeparking}, #{cafeholi}, #{cafetime}, #{cafemenupic1}, #{cafemenupic2}, #{cafeshutdown}, #{cafedelivery}, sysdate)
+	</insert>
+	<select id="select" resultType="com.project.webApp.admin.AdminVO">
+		select * from cafelist where num=#{num}
+	</select>
+	<update id="updateRecord" parameterType="com.project.webApp.admin.AdminVO">
+		update cafelist set cafename=#{cafename}, cafemainmenu=#{cafemainmenu}, cafephone=#{cafephone}, cafeaddr=#{cafeaddr}, latitude=#{latitude}, longitude=#{longitude}, cafefavor=#{cafefavor}, cafepic1=#{cafepic1}, cafepic2=#{cafepic2}, cafepic3=#{cafepic3}, cafepic4=#{cafepic4}, cafepic5=#{cafepic5}, cafestar=#{cafestar}, 
+		cafeparking=#{cafeparking}, cafeholi=#{cafeholi}, cafetime=#{cafetime}, cafemenupic1=#{cafemenupic1}, cafemenupic2=#{cafemenupic2}, cafeshutdown=#{cafeshutdown}, cafedelivery=#{cafedelivery} 
+		where num=#{num}
+	</update>
+	<delete id="deleteRecord" >
+		delete from cafelist where num=#{num}
+	</delete>
+</mapper>
