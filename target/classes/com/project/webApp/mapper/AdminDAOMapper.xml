@@ -10,18 +10,59 @@
 		select count(num) from cafelist
 	</select>
 	<insert id="insertRecord" parameterType="com.project.webApp.admin.AdminVO">
-		insert into cafelist(num, cafename, cafemainmenu, cafephone, cafeaddr, latitude, longitude, cafefavor, cafepic1, cafepic2, cafepic3, cafepic4, cafepic5, cafestar, cafeparking, cafeholi, cafetime, cafemenupic1, cafemenupic2, cafeshutdown, cafedelivery, cafewritedate) 
-		values(cafelistSq.nextVal, #{cafename}, #{cafemainmenu}, #{cafephone}, #{cafeaddr}, #{latitude}, #{longitude}, #{cafefavor}, #{cafepic1}, #{cafepic2}, #{cafepic3}, #{cafepic4}, #{cafepic5}, #{cafestar}, #{cafeparking}, #{cafeholi}, #{cafetime}, #{cafemenupic1}, #{cafemenupic2}, #{cafeshutdown}, #{cafedelivery}, sysdate)
+		insert into cafelist(num, cafename, cafemainmenu, cafephone, cafeaddr, latitude, longitude, cafefavor, cafepic1, cafepic2, cafepic3, cafestar, cafeparking, cafeholi, cafetime, cafeshutdown, cafedelivery, cafewritedate, cafelunch, cafedinner, cafelate, cafealcohol) 
+		values(cafelistSq.nextVal, #{cafename}, #{cafemainmenu}, #{cafephone}, #{cafeaddr}, #{latitude}, #{longitude}, #{cafefavor}, #{cafepic1}, #{cafepic2}, #{cafepic3}, #{cafestar}, #{cafeparking}, #{cafeholi}, #{cafetime}, #{cafeshutdown}, #{cafedelivery}, sysdate, #{cafelunch}, #{cafedinner}, #{cafelate}, #{cafealcohol})
 	</insert>
 	<select id="select" resultType="com.project.webApp.admin.AdminVO">
 		select * from cafelist where num=#{num}
 	</select>
 	<update id="updateRecord" parameterType="com.project.webApp.admin.AdminVO">
-		update cafelist set cafename=#{cafename}, cafemainmenu=#{cafemainmenu}, cafephone=#{cafephone}, cafeaddr=#{cafeaddr}, latitude=#{latitude}, longitude=#{longitude}, cafefavor=#{cafefavor}, cafepic1=#{cafepic1}, cafepic2=#{cafepic2}, cafepic3=#{cafepic3}, cafepic4=#{cafepic4}, cafepic5=#{cafepic5}, cafestar=#{cafestar}, 
-		cafeparking=#{cafeparking}, cafeholi=#{cafeholi}, cafetime=#{cafetime}, cafemenupic1=#{cafemenupic1}, cafemenupic2=#{cafemenupic2}, cafeshutdown=#{cafeshutdown}, cafedelivery=#{cafedelivery} 
+		update cafelist set cafename=#{cafename}, cafemainmenu=#{cafemainmenu}, cafephone=#{cafephone}, cafeaddr=#{cafeaddr}, latitude=#{latitude}, longitude=#{longitude}, cafefavor=#{cafefavor}, cafepic1=#{cafepic1}, cafepic2=#{cafepic2}, cafepic3=#{cafepic3}, cafestar=#{cafestar}, 
+		cafeparking=#{cafeparking}, cafeholi=#{cafeholi}, cafetime=#{cafetime}, cafeshutdown=#{cafeshutdown}, cafedelivery=#{cafedelivery}, cafelunch=#{cafelunch}, cafedinner=#{cafedinner}, cafelate=#{cafelate}, cafealcohol=#{cafealcohol} 
 		where num=#{num}
 	</update>
 	<delete id="deleteRecord" >
 		delete from cafelist where num=#{num}
 	</delete>
+	
+	      
+         <select id="selectLunch" resultType="com.project.webApp.admin.AdminVO">
+         <!-- DB를 셀렉트해서 VO에 담아서 리턴(여기선selectAll 가 id, CafeDAOInterface 에선 메소드) -->
+            SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+            FROM (SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+                  FROM CAFELIST WHERE CAFELUNCH=1 
+                  ORDER BY DBMS_RANDOM.VALUE
+                 ) E
+            WHERE ROWNUM = 1
+         </select>
+      
+      
+         <select id="selectDinner" resultType="com.project.webApp.admin.AdminVO">
+            SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+            FROM (SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+                  FROM CAFELIST WHERE CAFEDINNER=1
+                  ORDER BY DBMS_RANDOM.VALUE
+                 ) E
+            WHERE ROWNUM = 1
+         </select>
+         
+         <select id="selectLate" resultType="com.project.webApp.admin.AdminVO">
+            SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+            FROM (SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+                  FROM CAFELIST WHERE CAFELATE=1
+                  ORDER BY DBMS_RANDOM.VALUE
+                 ) E
+            WHERE ROWNUM = 1
+         </select>
+         
+         <select id="selectAlcohol" resultType="com.project.webApp.admin.AdminVO">
+            SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+            FROM (SELECT NUM, CAFENAME, CAFEMAINMENU, CAFEPHONE, CAFEADDR, LATITUDE, LONGITUDE, CAFELUNCH, CAFEDINNER, CAFELATE, CAFEALCOHOL, CAFEFAVOR, CAFEPIC1, CAFEPIC2, CAFEPIC3, CAFESTAR, CAFEPARKING, CAFEHOLI, CAFETIME, CAFESHUTDOWN, CAFEDELIVERY, CAFEWRITEDATE,TO_CHAR(SYSDATE, 'DY') CAFEDATE
+                  FROM CAFELIST WHERE CAFEALCOHOL=1
+                  ORDER BY DBMS_RANDOM.VALUE
+                 ) E
+            WHERE ROWNUM = 1
+         </select>   
+         
 </mapper>
+	

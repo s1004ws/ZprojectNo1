@@ -52,16 +52,16 @@
 		사진1 : ${vo.cafepic1}<br/><img src="/webApp/upload/${vo.cafepic1}"/><br/><br/>
 		사진2 : ${vo.cafepic2}<br/><img src="/webApp/upload/${vo.cafepic2}"/><br/><br/>
 		사진3 : ${vo.cafepic3}<br/><img src="/webApp/upload/${vo.cafepic3}"/><br/><br/>
-		사진4 : ${vo.cafepic4}<br/><img src="/webApp/upload/${vo.cafepic4}"/><br/><br/>
-		사진5 : ${vo.cafepic5}<br/><img src="/webApp/upload/${vo.cafepic5}"/><br/><br/>
 		별점 : ${vo.cafestar}<br/><br/>
 		주차유무 : ${vo.cafeparking}<br/><br/>
 		휴무 : ${vo.cafeholi}<br/><br/>
 		영업시간 : ${vo.cafetime}<br/><br/>
-		메뉴사진1 : ${vo.cafemenupic1}<br/><img src="/webApp/upload/${vo.cafemenupic1}"/><br/><br/>
-		메뉴사진2 : ${vo.cafemenupic2}<br/><img src="/webApp/upload/${vo.cafemenupic2}"/><br/><br/>
 		영업유무 : ${vo.cafeshutdown}<br/><br/>
 		배달여부 : ${vo.cafedelivery}<br/><br/>
+		점심여부 : ${vo.cafelunch}<br/><br/>
+		저녁여부 : ${vo.cafedinner}<br/><br/>
+		야식여부 : ${vo.cafelate}<br/><br/>
+		술안주여부 : ${vo.cafealcohol}<br/><br/>
 		등록일 : ${vo.cafewritedate}<br/>
 	</div>
 </body>

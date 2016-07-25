@@ -1,15 +1,17 @@
-<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+   <title>Home</title>
     <link href="/webApp/js_css/style.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+   <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body>
+   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+   <script src="/webApp/js_css/function.js"></script>
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div id="map"></div>
 <!-- 지도 표시 부분 -->
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=00898857ec294e7d5798822afd4e9a62&libraries=services"></script>
@@ -21,14 +23,53 @@
     };  
 
 // 지도를 생성합니다    
-var map = new daum.maps.Map(mapContainer, mapOption); 
+var map = new daum.maps.Map(mapContainer, mapOption);
+</script>
+<!-- 식당 위치 좌표 -->
+<c:if test="${meal!=null}">
+<%-- <c:forEach var="j" items="${meal}">
+<!-- <script>
+//   var dd ="${j.cafedate}";
+//   alert(dd);
+
+</script> -->
+</c:forEach> --%>
+<c:forEach var="i" items="${meal}">
+<script>
+
 //마커가 표시될 위치입니다 
-var markerPosition  = new daum.maps.LatLng(37.525081, 126.888574); 
+
+var cafeLat =${i.latitude};
+var   cafeLon =${i.longitude};
+
+//alert("${i.longitude}");
+
+var markerPosition  = new daum.maps.LatLng(cafeLat, cafeLon); 
 
 // 마커를 생성합니다
 var marker = new daum.maps.Marker({
     position: markerPosition
 });
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+var iwContent = '<div style="padding:5px;">${i.cafename}<br> <a href="http://map.daum.net/link/to/${i.cafename},${i.latitude},${i.longitude}" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition = new daum.maps.LatLng(cafeLat, cafeLon); //인포윈도우 표시 위치입니다
+
+// 인포윈도우를 생성합니다
+var infowindow = new daum.maps.InfoWindow({
+    position : iwPosition, 
+    content : iwContent 
+});
+  
+// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+infowindow.open(map, marker); 
+</script>
+</c:forEach>
+</c:if>
+<script>
+
 
 if (navigator.geolocation) {
     
@@ -78,46 +119,22 @@ function displayMarker(locPosition, message) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
 }    
+
     </script>
- <!-- 지도 표시 부분 -->  
-    
+ <!-- 지도 표시 부분 -->   
 <div id="left_banner_list"><img src="/webApp/resources/left_banner_list.png" id="left_banner_list_icon"/></div>
 <div id="left_banner">
-	오늘 추천된<br/>
-	음식점<br/>
-	리스트
+   오늘 추천된<br/>
+   음식점<br/>
+   리스트
 </div>
 <div id="right_banner_list"><img src="/webApp/resources/right_banner_list.png" id="right_banner_list_icon"/></div>
 <div id="right_banner">
-	실시간<br/>
-	방영맛집
+   실시간<br/>
+   방영맛집
 </div>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="/webApp/js_css/function.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-	$(function() {
-		$( "#dialog-confirm" ).dialog({
-			draggable:true, //창 드래그 못하게
-			resizable: false,
-			position:{ my:"center", at:"center", of:"#box1" },
-			//my : dialog 의 위치 
-			//at : 위치할 개체의 위치 
-			//of : 위치할 개체
-			height:520,
-			width:480,
-			modal: true,
-			open: function() {
-				$(this).parents('.ui-dialog').attr('tabindex', -1)[0].focus();
-			}
-		});
-	});
-</script>
-<div id="dialog-confirm" title="자아~ 언제 먹을라고?? 나만 믿어!!">
-   <div class="choice" id="choice1"><a href="/webApp/selectLunch">점심</a></div>
-   <div class="choice" id="choice2"><a href="/webApp/selectDinner">저녁</a></div>
-   <div class="choice" id="choice3"><a href="/webApp/selectLate">야식</a></div>
-   <div class="choice" id="choice4"><a href="/webApp/selectAlcohol">술안주</a></div>
+<div id="testblock">
 </div>
+
 </body>
 </html>

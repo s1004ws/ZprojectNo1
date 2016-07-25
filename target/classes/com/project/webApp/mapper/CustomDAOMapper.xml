@@ -3,6 +3,14 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.webApp.custom.CustomDAOInterface">
-
-
+	<select id="emailChk" resultType="int">
+		select count(num) from user_email where user_email=#{user_email}
+	</select>	
+	<insert id="insertCustom" parameterType="com.project.webApp.custom.CustomVO">
+		insert into user_email(num, user_email, user_email_password, userjoin_writedate) 
+		values(userlistSq.nextVal, #{user_email}, #{user_email_password},sysdate)
+	</insert>
+	<select id="selectCustom" resultType="int">
+		select count(num) from user_email where user_email = #{user_email} and user_email_password = #{user_email_password}
+	</select>
 </mapper>

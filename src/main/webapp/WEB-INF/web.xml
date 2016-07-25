@@ -62,12 +62,37 @@
 	</filter-mapping>
 	<!-- post방식에 대한 한글처리 -->
 	<!-- include를 사용하지 않고 코드 조각파일 자동적용 -->
-	<jsp-config>
+
+	 <jsp-config>
 		 <jsp-property-group>
-			 <url-pattern>*.jsp</url-pattern>
+			 <url-pattern>/WEB-INF/views/home.jsp</url-pattern>
 			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
 			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
 		 </jsp-property-group>
-	 </jsp-config>	
+		 <jsp-property-group>
+			 <url-pattern>/WEB-INF/views/admin.jsp</url-pattern>
+			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
+			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
+		 </jsp-property-group>
+		 <jsp-property-group>
+			 <url-pattern>/WEB-INF/views/custom/*</url-pattern>
+			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
+			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
+		 </jsp-property-group>
+		 <jsp-property-group>
+			 <url-pattern>/WEB-INF/views/admin/*</url-pattern>
+			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
+			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
+		 </jsp-property-group>
+		 <jsp-property-group>
+			 <url-pattern>/WEB-INF/views/emailLogin/emailLoginform.jsp</url-pattern>
+			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
+		 </jsp-property-group>
+		 <jsp-property-group>
+			 <url-pattern>/WEB-INF/views/choice/*</url-pattern>
+			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
+			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
+		 </jsp-property-group>
+	 </jsp-config>
 	<!-- include를 사용하지 않고 코드 조각파일 자동적용 -->
 </web-app>

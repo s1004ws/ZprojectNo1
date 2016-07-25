@@ -44,8 +44,6 @@
 				<li>사진1 : * <input type="file" id="cafepic1" name="cafepic"/></li>
 				<li>사진2 : * <input type="file" id="cafepic2" name="cafepic"/></li>
 				<li>사진3 : <input type="file" id="cafepic3" name="cafepic"/></li>
-				<li>사진4 : <input type="file" id="cafepic4" name="cafepic"/></li>
-				<li>사진5 : <input type="file" id="cafepic5" name="cafepic"/></li>
 				<li>별점 : <input type="text" id="cafestar" name="cafestar"/></li>
 				<li>
 					주차유무 : 
@@ -54,8 +52,6 @@
 				</li>
 				<li>휴무 : * <input type="text" id="cafeholi" name="cafeholi"/></li>
 				<li>영업시간 : * <input type="text" id="cafetime" name="cafetime"/></li>
-				<li>메뉴사진1 : * <input type="file" id="cafemenupic1" name="cafemenupic"/></li>
-				<li>메뉴사진2 : <input type="file" id="cafemenupic2" name="cafemenupic"/></li>
 				<li>
 					영업유무 : 
 					* <input type="radio" name="cafeshutdown" value="true" checked/>영업중
@@ -65,6 +61,26 @@
 					배달여부 : 
 					* <input type="radio" name="cafedelivery" value="true" checked/>가능
 					<input type="radio" name="cafedelivery" value="false"/>불가능
+				</li>
+				<li>
+					점심여부 : 
+					* <input type="radio" name="cafelunch" value="1" checked/>가능
+					<input type="radio" name="cafelunch" value="0"/>불가능
+				</li>
+				<li>
+					저녁여부 : 
+					* <input type="radio" name="cafedinner" value="1" checked/>가능
+					<input type="radio" name="cafedinner" value="0"/>불가능
+				</li>
+				<li>
+					야식여부 : 
+					* <input type="radio" name="cafelate" value="1" checked/>가능
+					<input type="radio" name="cafelate" value="0"/>불가능
+				</li>
+				<li>
+					술안주여부 : 
+					* <input type="radio" name="cafealcohol" value="1" checked/>가능
+					<input type="radio" name="cafealcohol" value="0"/>불가능
 				</li>
 			</ul>
 		</fieldset>

@@ -65,6 +65,10 @@ public class AdminController {
 		vo.setCafetime(req.getParameter("cafetime"));
 		vo.setCafeshutdown(req.getParameter("cafeshutdown"));
 		vo.setCafedelivery(req.getParameter("cafedelivery"));
+		vo.setCafelunch(req.getParameter("cafelunch"));
+		vo.setCafedinner(req.getParameter("cafedinner"));
+		vo.setCafelate(req.getParameter("cafelate"));
+		vo.setCafealcohol(req.getParameter("cafealcohol"));
 		
 		// 업로드관련 
 		
@@ -113,51 +117,11 @@ public class AdminController {
 					if(i==0)vo.setCafepic1(newFilename);
 					if(i==1)vo.setCafepic2(newFilename);
 					if(i==2)vo.setCafepic3(newFilename);
-					if(i==3)vo.setCafepic4(newFilename);
-					if(i==4)vo.setCafepic5(newFilename);
 				}//if
 			}//for
 		}//if
 		//cafepic 첨부파일목록 끝
-		
-		
-		List<MultipartFile> flist2= mr.getFiles("cafemenupic");		
-		if(flist2!=null){
-			for(int i=0;i<flist2.size();i++){
-				MultipartFile mf2 = flist2.get(i);
-				//매개변수명
-				String aguName2 = mf2.getName();
-				//업로드할 원래 파일명
-				String orgFilename2 = mf2.getOriginalFilename();
-				if(!orgFilename2.isEmpty()){//////
-					//업로드할 파일명이 존재하는지 확인  d:/springUpload   
-					File fCheck2 = new File(folder,orgFilename2);
-					//rename
-					int cnt=1;
-					String newFilename2 = orgFilename2;
-					while(fCheck2.exists()){//파일이 존재하는 지 확인 index.png
-						int idx2 = orgFilename2.lastIndexOf(".");//마지막 .의 인덱스
-						String firstFile2 = orgFilename2.substring(0, idx2) ;
-						String lastFile2 = orgFilename2.substring(idx2+1);
-						
-						fCheck2 = new File(folder, firstFile2+cnt+"."+lastFile2 );
-						if(!fCheck2.exists()){//새로만든 파일명이 업로드 폴더에 없으면
-							newFilename2 = fCheck2.getName();
-							break;
-						}
-						cnt++;
-					}//while
-				    //파일업로드
-					try{
-						mf2.transferTo(new File(folder, newFilename2));
-					}catch(IOException ie){ie.printStackTrace();}
-					mav.addObject("cafemenupic"+(i+1), newFilename2);
-					if(i==0)vo.setCafemenupic1(newFilename2);
-					if(i==1)vo.setCafemenupic2(newFilename2);
-				}//if
-			}//for
-		}//if
-		//cafenemupic 첨부파일목록 끝
+
 		System.out.println("cafename 저장값 : "+vo.getCafename());
 		System.out.println("cafemainmenu 저장값 : "+vo.getCafemainmenu());
 		System.out.println("cafestar 저장값 : "+vo.getCafestar());
@@ -167,11 +131,11 @@ public class AdminController {
 		System.out.println("cafepic1 저장값 : "+vo.getCafepic1());
 		System.out.println("cafepic2 저장값 : "+vo.getCafepic2());
 		System.out.println("cafepic3 저장값 : "+vo.getCafepic3());
-		System.out.println("cafepic4 저장값 : "+vo.getCafepic4());
-		System.out.println("cafepic5 저장값 : "+vo.getCafepic5());
-		System.out.println("cafemenupic1 저장값 : "+vo.getCafemenupic1());
-		System.out.println("cafemenupic2 저장값 : "+vo.getCafemenupic2());
 		
+		System.out.println("cafelunch 저장값 : "+vo.getCafelunch());
+		System.out.println("cafedinner 저장값 : "+vo.getCafedinner());
+		System.out.println("cafelate 저장값 : "+vo.getCafelate());
+		System.out.println("cafealcohol 저장값 : "+vo.getCafealcohol());
 		
 		int cnt = dao.insertRecord(vo);
 		System.out.println("cnt = "+cnt);
@@ -215,6 +179,10 @@ public class AdminController {
 		vo.setCafetime(req.getParameter("cafetime"));
 		vo.setCafeshutdown(req.getParameter("cafeshutdown"));
 		vo.setCafedelivery(req.getParameter("cafedelivery"));
+		vo.setCafelunch(req.getParameter("cafelunch"));
+		vo.setCafedinner(req.getParameter("cafedinner"));
+		vo.setCafelate(req.getParameter("cafelate"));
+		vo.setCafealcohol(req.getParameter("cafealcohol"));
 		vo.setCafewritedate(req.getParameter("cafewritedate"));
 		
 		// 업로드관련 
@@ -264,51 +232,13 @@ public class AdminController {
 					if(i==0)vo.setCafepic1(newFilename);
 					if(i==1)vo.setCafepic2(newFilename);
 					if(i==2)vo.setCafepic3(newFilename);
-					if(i==3)vo.setCafepic4(newFilename);
-					if(i==4)vo.setCafepic5(newFilename);
 				}//if
 			}//for
 		}//if
 		//cafepic 첨부파일목록 끝
 		
 		
-		List<MultipartFile> flist2= mr.getFiles("cafemenupic");		
-		if(flist2!=null){
-			for(int i=0;i<flist2.size();i++){
-				MultipartFile mf2 = flist2.get(i);
-				//매개변수명
-				String aguName2 = mf2.getName();
-				//업로드할 원래 파일명
-				String orgFilename2 = mf2.getOriginalFilename();
-				if(!orgFilename2.isEmpty()){//////
-					//업로드할 파일명이 존재하는지 확인  d:/springUpload   
-					File fCheck2 = new File(folder,orgFilename2);
-					//rename
-					int cnt=1;
-					String newFilename2 = orgFilename2;
-					while(fCheck2.exists()){//파일이 존재하는 지 확인 index.png
-						int idx2 = orgFilename2.lastIndexOf(".");//마지막 .의 인덱스
-						String firstFile2 = orgFilename2.substring(0, idx2) ;
-						String lastFile2 = orgFilename2.substring(idx2+1);
-						
-						fCheck2 = new File(folder, firstFile2+cnt+"."+lastFile2 );
-						if(!fCheck2.exists()){//새로만든 파일명이 업로드 폴더에 없으면
-							newFilename2 = fCheck2.getName();
-							break;
-						}
-						cnt++;
-					}//while
-				    //파일업로드
-					try{
-						mf2.transferTo(new File(folder, newFilename2));
-					}catch(IOException ie){ie.printStackTrace();}
-					mav.addObject("cafemenupic"+(i+1), newFilename2);
-					if(i==0)vo.setCafemenupic1(newFilename2);
-					if(i==1)vo.setCafemenupic2(newFilename2);
-				}//if
-			}//for
-		}//if
-		//cafenemupic 첨부파일목록 끝
+
 		System.out.println("cafeNum 저장값 : "+vo.getNum());
 		System.out.println("cafename 저장값 : "+vo.getCafename());
 		System.out.println("cafemainmenu 저장값 : "+vo.getCafemainmenu());
@@ -319,12 +249,7 @@ public class AdminController {
 		System.out.println("cafepic1 저장값 : "+vo.getCafepic1());
 		System.out.println("cafepic2 저장값 : "+vo.getCafepic2());
 		System.out.println("cafepic3 저장값 : "+vo.getCafepic3());
-		System.out.println("cafepic4 저장값 : "+vo.getCafepic4());
-		System.out.println("cafepic5 저장값 : "+vo.getCafepic5());
-		System.out.println("cafemenupic1 저장값 : "+vo.getCafemenupic1());
-		System.out.println("cafemenupic2 저장값 : "+vo.getCafemenupic2());
-		
-		
+	
 		int cnt = dao.updateRecord(vo);
 		System.out.println("cnt = "+cnt); //확인만
 		mav.addObject("num",vo.getNum());
@@ -339,6 +264,62 @@ public class AdminController {
 		mav.setViewName("redirect:cafe_list");
 		return mav;
 	}
+	
+	   @RequestMapping("/selectLunch")
+	   public ModelAndView selectLunch(HttpServletRequest req){
+	      
+	      AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
+	      List<AdminVO> map= dao.selectLunch();
+	      
+	      //CafeVO vo = map.get(0);
+	      //System.out.println(vo.getCafemainmenu());
+	   
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("meal",map);
+	      mav.setViewName("/choice/choice");
+	      return mav;
+	      
+	   }
+	   @RequestMapping("/selectDinner")
+	   public ModelAndView selectDinner(HttpServletRequest req){
+	      
+		   AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
+	      List<AdminVO> map= dao.selectDinner();
+	      //System.out.println(map.get(0));
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("meal",map);
+	      mav.setViewName("/choice/choice");
+	      return mav;
+	      
+	   }
+	   @RequestMapping("/selectLate")
+	   public ModelAndView selectLate(HttpServletRequest req){
+	      
+		   AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
+	      List<AdminVO> map= dao.selectLate();
+	      //System.out.println(map.get(0));
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("meal",map);
+	      mav.setViewName("/choice/choice");
+	      return mav;
+	      
+	   }
+	   @RequestMapping("/selectAlcohol")
+	   public ModelAndView selectAlcohol(HttpServletRequest req){
+	      
+		   AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
+	      List<AdminVO> map= dao.selectAlcohol();
+	      //System.out.println(map.get(0));
+	      
+	      ModelAndView mav = new ModelAndView();
+	      mav.addObject("meal",map);
+	      mav.setViewName("/choice/choice");
+	      return mav;
+	      
+	   }
+	   
 }
 
 

@@ -30,7 +30,7 @@ $(function() {
 
 	$("#dialog-login").dialog({
 		autoOpen:false,
-		draggable:true, //창 드래그 못하게
+		draggable:false, //창 드래그 못하게
 		resizable:false,
 		position:{ my:"center", at:"center", of:"#box1" },
 		//my : dialog 의 위치 
@@ -42,9 +42,27 @@ $(function() {
 		open: function() {
 			$(this).parents('.ui-dialog').attr('tabindex', -1)[0].focus();
 		}
-	});
-
+		
+	});	
 });
+
+	var w;
+	function winOpen(){
+		cw=screen.availWidth;     //화면 넓이
+		ch=screen.availHeight;    //화면 높이
+		
+		sw=350;    //띄울 창의 넓이
+		sh=350;    //띄울 창의 높이
+		
+		ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
+		mt=(ch-sh)/2;         //가운데 띄우기위한 창의 y위치
+		 //근데 왜 안돼냥?
+		w = window.open("/webApp/email_login","win","width=400, height=550, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no");
+	}
+	function winClose(){
+		w.close();
+		return true;
+	} // 열린창을 변수 w에 담고 변수 w를 close 한다.
 </script>
 <div id="dialog-login" title="당신을 위한 당신만을 위한!!">
 	<div>
@@ -82,7 +100,7 @@ $(function() {
 			
 			
 			<div id="mail">
-			<input type="button" class="btn" id="email_login" value="E-MAIL주소로 시작"/>
+			<input type="button" class="btn" id="email_login" value="E-MAIL주소로 시작" onClick="winOpen()"/>
 			</div>      
 		</div>
 	</div>

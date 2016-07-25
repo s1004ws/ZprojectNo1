@@ -59,14 +59,22 @@ body,ul,li{margin:0px;paddimg:0px}
 #cafelist_title{font-weight:bold}
 #registration_cafe{
 	width:50%;
-	height:700px;
+	height:800px;
 	margin:0px auto;
 	background:lightgray;
 	border:3px solid gray;
 }
-#registration_cafe_view, #registration_cafe_edit{
+#registration_cafe_view{
 	width:50%;
 	height: auto;
+	margin:0px auto;
+	background:lightgray;
+	border:3px solid gray;
+}
+
+#registration_cafe_edit{
+	width:50%;
+	height: 1000px;
 	margin:0px auto;
 	background:lightgray;
 	border:3px solid gray;
@@ -79,12 +87,12 @@ body,ul,li{margin:0px;paddimg:0px}
     max-height: 100%;
 	border:1px solid black;
 }
-#cafe_regist_btn{text-align:center;}
+#cafe_regist_btn{text-align:center}
 #registration_cafe fieldset{
 	height:90%
 }
 #regi_content{
-	width:90%;
+	width:100%;
 	height:auto;
 	float:left;
 }

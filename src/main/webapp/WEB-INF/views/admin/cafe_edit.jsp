@@ -43,8 +43,6 @@
 				<li>사진1 : * <input type="file" id="cafepic1" name="cafepic" value="${vo.cafepic1}"/><br/><img src="/webApp/upload/${vo.cafepic1}"/></li>
 				<li>사진2 : * <input type="file" id="cafepic2" name="cafepic" value="${vo.cafepic2}"/><br/><img src="/webApp/upload/${vo.cafepic2}"/></li>
 				<li>사진3 : <input type="file" id="cafepic3" name="cafepic" value="${vo.cafepic3}"/><br/><img src="/webApp/upload/${vo.cafepic3}"/></li>
-				<li>사진4 : <input type="file" id="cafepic4" name="cafepic" value="${vo.cafepic4}"/><br/><img src="/webApp/upload/${vo.cafepic4}"/></li>
-				<li>사진5 : <input type="file" id="cafepic5" name="cafepic" value="${vo.cafepic5}"/><br/><img src="/webApp/upload/${vo.cafepic5}"/></li>
 				<li>별점 : <input type="text" id="cafestar" name="cafestar" value="${vo.cafestar}"/></li>
 				<li>
 					주차유무 : 
@@ -53,8 +51,6 @@
 				</li>
 				<li>휴무 : * <input type="text" id="cafeholi" name="cafeholi" value="${vo.cafeholi}"/></li>
 				<li>영업시간 : * <input type="text" id="cafetime" name="cafetime" value="${vo.cafetime}"/></li>
-				<li>메뉴사진1 : * <input type="file" id="cafemenupic1" name="cafemenupic" value="${vo.cafemenupic1}"/><br/><img src="/webApp/upload/${vo.cafemenupic1}"/></li>
-				<li>메뉴사진2 : <input type="file" id="cafemenupic2" name="cafemenupic" value="${vo.cafemenupic2}"/><br/><img src="/webApp/upload/${vo.cafemenupic2}"/></li>
 				<li>
 					영업유무 : 
 					* <input type="radio" name="cafeshutdown" value="true" <c:if test="${vo.cafeshutdown=='true'}">checked</c:if> />영업중
@@ -64,6 +60,26 @@
 					배달여부 : 
 					* <input type="radio" name="cafedelivery" value="true" <c:if test="${vo.cafeshutdown=='true'}">checked</c:if> />가능
 					<input type="radio" name="cafedelivery" value="false" <c:if test="${vo.cafeshutdown=='false'}">checked</c:if> />불가능
+				</li>
+				<li>
+					점심여부 : 
+					* <input type="radio" name="cafelunch" value="1" <c:if test="${vo.cafelunch=='1'}">checked</c:if> />가능
+					<input type="radio" name="cafelunch" value="0" <c:if test="${vo.cafelunch=='0'}">checked</c:if> />불가능
+				</li>
+				<li>
+					저녁여부 : 
+					* <input type="radio" name="cafedinner" value="1" <c:if test="${vo.cafedinner=='1'}">checked</c:if> />가능
+					<input type="radio" name="cafedinner" value="0" <c:if test="${vo.cafedinner=='0'}">checked</c:if> />불가능
+				</li>
+				<li>
+					야식여부 : 
+					* <input type="radio" name="cafelate" value="1" <c:if test="${vo.cafelate=='1'}">checked</c:if> />가능
+					<input type="radio" name="cafelate" value="0" <c:if test="${vo.cafelate=='0'}">checked</c:if> />불가능
+				</li>
+				<li>
+					술안주여부 : 
+					* <input type="radio" name="cafealcohol" value="1" <c:if test="${vo.cafealcohol=='1'}">checked</c:if> />가능
+					<input type="radio" name="cafealcohol" value="0" <c:if test="${vo.cafealcohol=='0'}">checked</c:if> />불가능
 				</li>
 			</ul>
 		<div id="cafe_regist_btn">

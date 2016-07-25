@@ -21,9 +21,30 @@
 <div id="box1_logo">
 	<a href="/webApp"><img src="/webApp/resources/mainlogo.png" id="logo"/></a>
 </div>
-<div id="box1_login">
-	로그인 <img src="/webApp/resources/login.png" id="loginicon"/>
-</div>
+
+<%--<c:set var="user_email" value='<%=(String)session.getAttribute("user_email")%>'/>
+ <% if(session.getAttribute("loginStatus")==null || !session.getAttribute("loginStatus").equals("Y")){ %> 
+	<div id="box1_login">
+		로그인 <img src="/webApp/resources/login.png" id="loginicon"/>
+	</div>
+	<%}else{%>
+		<%=session.getAttribute("username") %>님 환영합니다.
+	<%} %>	 --%>
+
+<c:choose>
+	<c:when test="${user_email==null || user_email==''}">
+		<div id="box1_login">
+			로그인 <img src="/webApp/resources/login.png" id="loginicon"/>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div id="box1_login">
+		${user_email} 로그인중....   <a href="${logout}">로그아웃</a>
+		</div>
+	</c:otherwise>
+</c:choose>
+
+
 </div>
 </div>
 <div id="box2">

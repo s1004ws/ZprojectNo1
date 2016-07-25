@@ -13,18 +13,18 @@ public class AdminVO {
 	private String cafepic1;
 	private String cafepic2;
 	private String cafepic3;
-	private String cafepic4;
-	private String cafepic5;
 	private int cafestar;
 	private String cafeparking;
 	private String cafeholi;
 	private String cafetime;
-	private String cafemenupic1;
-	private String cafemenupic2;
 	private String cafeshutdown;
 	private String cafedelivery;
 	private String cafewritedate;
-	String aaa;
+	private String cafelunch;
+	private String cafedinner;
+	private String cafelate;
+	private String cafealcohol;
+	
 	///
 	public AdminVO(){}
 
@@ -116,22 +116,6 @@ public class AdminVO {
 		this.cafepic3 = cafepic3;
 	}
 
-	public String getCafepic4() {
-		return cafepic4;
-	}
-
-	public void setCafepic4(String cafepic4) {
-		this.cafepic4 = cafepic4;
-	}
-
-	public String getCafepic5() {
-		return cafepic5;
-	}
-
-	public void setCafepic5(String cafepic5) {
-		this.cafepic5 = cafepic5;
-	}
-
 	public int getCafestar() {
 		return cafestar;
 	}
@@ -164,22 +148,6 @@ public class AdminVO {
 		this.cafetime = cafetime;
 	}
 
-	public String getCafemenupic1() {
-		return cafemenupic1;
-	}
-
-	public void setCafemenupic1(String cafemenupic1) {
-		this.cafemenupic1 = cafemenupic1;
-	}
-
-	public String getCafemenupic2() {
-		return cafemenupic2;
-	}
-
-	public void setCafemenupic2(String cafemenupic2) {
-		this.cafemenupic2 = cafemenupic2;
-	}
-
 	public String getCafeshutdown() {
 		return cafeshutdown;
 	}
@@ -203,6 +171,40 @@ public class AdminVO {
 	public void setCafewritedate(String cafewritedate) {
 		this.cafewritedate = cafewritedate;
 	}
+
+	public String getCafelunch() {
+		return cafelunch;
+	}
+
+	public void setCafelunch(String cafelunch) {
+		this.cafelunch = cafelunch;
+	}
+
+	public String getCafedinner() {
+		return cafedinner;
+	}
+
+	public void setCafedinner(String cafedinner) {
+		this.cafedinner = cafedinner;
+	}
+
+	public String getCafelate() {
+		return cafelate;
+	}
+
+	public void setCafelate(String cafelate) {
+		this.cafelate = cafelate;
+	}
+
+	public String getCafealcohol() {
+		return cafealcohol;
+	}
+
+	public void setCafealcohol(String cafealcohol) {
+		this.cafealcohol = cafealcohol;
+	}
+	
+	
 	
 	///
 	
