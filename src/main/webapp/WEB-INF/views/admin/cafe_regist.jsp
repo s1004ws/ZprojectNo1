@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,20 +46,20 @@
 				<li>별점 : <input type="text" id="cafestar" name="cafestar"/></li>
 				<li>
 					주차유무 : 
-					* <input type="radio" name="cafeparking" value="true" checked/>가능
-					<input type="radio" name="cafeparking" value="false"/>불가능
+					* <input type="radio" name="cafeparking" value="가능" checked/>가능
+					<input type="radio" name="cafeparking" value="불가능"/>불가능
 				</li>
 				<li>휴무 : * <input type="text" id="cafeholi" name="cafeholi"/></li>
 				<li>영업시간 : * <input type="text" id="cafetime" name="cafetime"/></li>
 				<li>
 					영업유무 : 
-					* <input type="radio" name="cafeshutdown" value="true" checked/>영업중
-					<input type="radio" name="cafeshutdown" value="false"/>폐업
+					* <input type="radio" name="cafeshutdown" value="영업중" checked/>영업중
+					<input type="radio" name="cafeshutdown" value="폐업"/>폐업
 				</li>
 				<li>
 					배달여부 : 
-					* <input type="radio" name="cafedelivery" value="true" checked/>가능
-					<input type="radio" name="cafedelivery" value="false"/>불가능
+					* <input type="radio" name="cafedelivery" value="가능" checked/>가능
+					<input type="radio" name="cafedelivery" value="불가능"/>불가능
 				</li>
 				<li>
 					점심여부 : 

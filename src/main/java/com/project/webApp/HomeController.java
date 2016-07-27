@@ -3,7 +3,6 @@ package com.project.webApp;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +14,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		model.addAttribute("user_email",session.getAttribute("user_email"));
+		//HttpSession session = req.getSession();
+		//model.addAttribute("user_email",session.getAttribute("user_email"));
 		return "home";
 	}	
 }

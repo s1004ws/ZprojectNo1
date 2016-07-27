@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>cafe_regist</title>
 <link href="/webApp/js_css/mypage_style.css" rel="stylesheet"/>
+<style>
+#registration_cafe_edit{
+	width:50%;
+	height: auto;
+	margin:0px auto;
+	background:lightgray;
+	border:3px solid gray;
+}
+</style>
 </head>
 <body>
 <div id="top_area">
@@ -46,20 +54,20 @@
 				<li>별점 : <input type="text" id="cafestar" name="cafestar" value="${vo.cafestar}"/></li>
 				<li>
 					주차유무 : 
-					* <input type="radio" name="cafeparking" value="true" <c:if test="${vo.cafeshutdown=='true'}">checked</c:if> />가능
-					<input type="radio" name="cafeparking" value="false" <c:if test="${vo.cafeshutdown=='false'}">checked</c:if> />불가능
+					* <input type="radio" name="cafeparking" value="가능" <c:if test="${vo.cafeparking=='가능'}"> checked</c:if> />가능
+					<input type="radio" name="cafeparking" value="불가능" <c:if test="${vo.cafeparking=='불가능'}"> checked</c:if> />불가능
 				</li>
 				<li>휴무 : * <input type="text" id="cafeholi" name="cafeholi" value="${vo.cafeholi}"/></li>
 				<li>영업시간 : * <input type="text" id="cafetime" name="cafetime" value="${vo.cafetime}"/></li>
 				<li>
 					영업유무 : 
-					* <input type="radio" name="cafeshutdown" value="true" <c:if test="${vo.cafeshutdown=='true'}">checked</c:if> />영업중
-					<input type="radio" name="cafeshutdown" value="false" <c:if test="${vo.cafeshutdown=='false'}">checked</c:if> />폐업
+					* <input type="radio" name="cafeshutdown" value="영업중" <c:if test="${vo.cafeshutdown=='영업중'}">checked</c:if> />영업중
+					<input type="radio" name="cafeshutdown" value="폐업" <c:if test="${vo.cafeshutdown=='폐업'}">checked</c:if> />폐업
 				</li>
 				<li>
 					배달여부 : 
-					* <input type="radio" name="cafedelivery" value="true" <c:if test="${vo.cafeshutdown=='true'}">checked</c:if> />가능
-					<input type="radio" name="cafedelivery" value="false" <c:if test="${vo.cafeshutdown=='false'}">checked</c:if> />불가능
+					* <input type="radio" name="cafedelivery" value="가능" <c:if test="${vo.cafedelivery=='가능'}">checked</c:if> />가능
+					<input type="radio" name="cafedelivery" value="불가능" <c:if test="${vo.cafedelivery=='불가능'}">checked</c:if> />불가능
 				</li>
 				<li>
 					점심여부 : 

@@ -1,14 +1,20 @@
 package com.project.webApp.custom;
 
+import java.util.StringTokenizer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.project.webApp.admin.AdminVO;
 
 
 @Controller
@@ -82,6 +88,63 @@ public class CustomController {
 		mav.addObject("loginStatus", vo.getLoginStatus());
 		mav.setViewName("emailLogin/emailLoginformOk"); //redirect해서 컨트롤러 호출
 		
+		return mav;
+	}
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletRequest req){
+		HttpSession session = req.getSession();
+		session.invalidate();//session 을 삭제하는 클래스
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/");
+		return mav;
+
+	}
+	@RequestMapping("/mypage")
+	public ModelAndView mypage(HttpServletRequest req, CustomVO vo){
+		HttpSession session = req.getSession();
+		CustomDAOInterface dao = sqlSession.getMapper(CustomDAOInterface.class);
+		vo.setUser_email((String)session.getAttribute("user_email"));
+		//session이 object로 나오니깐 String으로 형변환
+	
+		String f = dao.selectCustomFavor(vo);
+		
+		if(f!=null){
+		StringTokenizer st = new StringTokenizer(f, "-");
+		String favor[] = new String[st.countTokens()];
+		int i=0;
+		while(st.hasMoreTokens()){
+			favor[i++] = st.nextToken();
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("favor1",favor[0]);
+		mav.addObject("favor2",favor[1]);
+		mav.addObject("favor3",favor[2]);
+		mav.addObject("favor4",favor[3]);
+		mav.addObject("favor5",favor[4]);
+		mav.setViewName("custom/mypage"); //redirect해서 컨트롤러 호출
+		return mav;
+		}
+		else{ 
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("custom/mypage");
+			return mav;
+		}
+	}
+	@RequestMapping("/myfavorOk")
+	public ModelAndView myfavorOk(HttpServletRequest req, CustomVO vo){
+		HttpSession session = req.getSession();
+		CustomDAOInterface dao = sqlSession.getMapper(CustomDAOInterface.class);
+		vo.getFavorlist();
+		System.out.println("취향 = "+vo.getFavorlist());
+		vo.setUser_email((String)session.getAttribute("user_email"));
+		//session이 object로 나오니깐 String으로 형변환
+		int cnt = dao.updateCustomFavor(vo);
+
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("cnt", cnt);
+		
+		mav.setViewName("redirect:/mypage"); //redirect해서 컨트롤러 호출
 		return mav;
 	}
 }

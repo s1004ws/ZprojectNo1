@@ -36,3 +36,17 @@ function memCheck(){
 	}
 	return true;
 }
+
+function favorCheck(){
+	//고객취향 - 5개 선택
+	var cnt=0;
+	for(i=0;i<document.favorFrm.favor.length;i++){
+		if(document.favorFrm.favor[i].checked){ //체크가 되어 있으면 true 이며
+			cnt++;}
+		}
+	if(cnt!=5){
+		alert("취향은 5개 선택하여야 합니다...");
+		return false;
+	}
+	return true;
+}

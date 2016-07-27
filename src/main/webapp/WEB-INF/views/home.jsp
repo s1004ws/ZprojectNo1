@@ -1,13 +1,11 @@
 <%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
     <link href="/webApp/js_css/style.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body>
 <div id="map"></div>
@@ -17,7 +15,7 @@
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
@@ -114,10 +112,10 @@ function displayMarker(locPosition, message) {
 	});
 </script>
 <div id="dialog-confirm" title="자아~ 언제 먹을라고?? 나만 믿어!!">
-   <div class="choice" id="choice1"><a href="/webApp/selectLunch">점심</a></div>
-   <div class="choice" id="choice2"><a href="/webApp/selectDinner">저녁</a></div>
-   <div class="choice" id="choice3"><a href="/webApp/selectLate">야식</a></div>
-   <div class="choice" id="choice4"><a href="/webApp/selectAlcohol">술안주</a></div>
+   <a href="/webApp/selectLunch"><div class="choice" id="choice1">점심</div></a>
+   <a href="/webApp/selectDinner"><div class="choice" id="choice2">저녁</div></a>
+   <a href="/webApp/selectLate"><div class="choice" id="choice3">야식</div></a>
+   <a href="/webApp/selectAlcohol"><div class="choice" id="choice4">술안주</div></a>
 </div>
 </body>
 </html>

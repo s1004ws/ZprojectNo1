@@ -75,9 +75,14 @@
 			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
 		 </jsp-property-group>
 		 <jsp-property-group>
-			 <url-pattern>/WEB-INF/views/custom/*</url-pattern>
+			 <url-pattern>/WEB-INF/views/custom/loginform.jsp</url-pattern>
 			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
 			 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda>
+		 </jsp-property-group>
+		 <jsp-property-group>
+			 <url-pattern>/WEB-INF/views/custom/mypage.jsp</url-pattern>
+			 <include-prelude>/WEB-INF/views/include/top.jspf</include-prelude>
+	<!-- 		 <include-coda>/WEB-INF/views/include/bottom.jspf</include-coda> -->
 		 </jsp-property-group>
 		 <jsp-property-group>
 			 <url-pattern>/WEB-INF/views/admin/*</url-pattern>

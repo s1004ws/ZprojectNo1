@@ -56,7 +56,9 @@ body,ul,li{margin:0px;paddimg:0px}
 	background:white;
 	
 }
-#cafelist_title{font-weight:bold}
+#cafelist_title{font-weight:bold;}
+#cafelist_title>li{border-bottom:1px solid gray;border-top:1px solid gray}
+#cafelistdiv li{border-right:1px solid gray;}
 #registration_cafe{
 	width:50%;
 	height:800px;
@@ -74,7 +76,7 @@ body,ul,li{margin:0px;paddimg:0px}
 
 #registration_cafe_edit{
 	width:50%;
-	height: 1000px;
+	height: auto;
 	margin:0px auto;
 	background:lightgray;
 	border:3px solid gray;
@@ -102,5 +104,7 @@ legend{font-size:1.5em;font-weight:bold;text-align:center}
 #cafelistdiv{margin:0px auto;width:100%}
 #cafelistdiv>h3{margin-left:10%}
 #cafelistdiv>a{margin-left:10%}
-#cafelistdiv ul>li{width:10%;float:left;list-style-type:none;text-align:center}
+#cafelistdiv li.short{width:10%;float:left;list-style-type:none;text-align:center}
+#cafelistdiv li.long{width:22%;float:left;list-style-type:none;text-align:center}
+
 

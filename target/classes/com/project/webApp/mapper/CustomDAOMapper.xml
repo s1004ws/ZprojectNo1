@@ -13,4 +13,11 @@
 	<select id="selectCustom" resultType="int">
 		select count(num) from user_email where user_email = #{user_email} and user_email_password = #{user_email_password}
 	</select>
+	<update id="updateCustomFavor" parameterType="com.project.webApp.custom.CustomVO">
+		update user_email set favor=#{favordb} 
+		where user_email=#{user_email}
+	</update>
+	<select id="selectCustomFavor" resultType="String">
+		select favor from user_email where user_email=#{user_email}
+	</select>
 </mapper>

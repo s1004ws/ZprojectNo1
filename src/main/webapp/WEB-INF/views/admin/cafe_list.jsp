@@ -31,21 +31,21 @@
 	<a href="/webApp/cafe_regist">업체등록</a>
 	<br/><br/>
 	<ul id="cafelist_title">
-		<li>번호</li>
-		<li>상호명</li>
-		<li>메인메뉴</li>
-		<li>업체취향</li>
-		<li>별점</li>
-		<li>업체등록일</li>
+		<li class="short">번호</li>
+		<li class="short">상호명</li>
+		<li class="long">메인메뉴</li>
+		<li class="long">업체취향</li>
+		<li class="short">별점</li>
+		<li class="long">업체등록일</li>
 	</ul><br/><br/>
 	<c:forEach var="i" items="${list}">
 		<ul>
-			<li>${i.num}</li>
-			<li><a href="/webApp/cafe_view?num=${i.num}">${i.cafename}</a></li>
-			<li>${i.cafemainmenu}</li>
-			<li>${i.cafefavor}</li>
-			<li>${i.cafestar}</li>
-			<li>${i.cafewritedate}</li>
+			<li class="short">${i.num}</li>
+			<li class="short"><a href="/webApp/cafe_view?num=${i.num}">${i.cafename}</a></li>
+			<li class="long">${i.cafemainmenu}</li>
+			<li class="long">${i.cafefavor}</li>
+			<li class="short">${i.cafestar}</li>
+			<li class="long">${i.cafewritedate}</li>
 		</ul>
 		<br/><br/>
 	</c:forEach>
