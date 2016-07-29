@@ -6,20 +6,83 @@
 	<title>Home</title>
     <link href="/webApp/js_css/style.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<style>
+		.LBimg{width:100px;height:90px;text-aling:center}
+
+	</style>
 </head>
 <body>
 <div id="map"></div>
+
 <!-- 지도 표시 부분 -->
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=00898857ec294e7d5798822afd4e9a62&libraries=services"></script>
     <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
+</script>
+<c:if test="${list!=null}">
+<c:forEach var="i" items="${list}">
+<%-- <c:forEach var="j" items="${meal}">
+<!-- <script>
+//   var dd ="${j.cafedate}";
+//   alert(dd);
+
+</script> -->
+</c:forEach> --%>
+
+
+<script>
+
+//마커가 표시될 위치입니다 
+
+var cafeLat =${i.latitude};
+var cafeLon =${i.longitude};
+
+//alert("${i.longitude}");
+
+var markerPosition  = new daum.maps.LatLng(cafeLat, cafeLon); 
+
+var marker = new daum.maps.Marker({
+    map: map, // 마커를 표시할 지도
+    position: markerPosition // 마커의 위치
+});
+var iwContent = '<div style="padding:5px;">${i.cafename}<br> <a href="http://map.daum.net/link/to/${i.cafename},${i.latitude},${i.longitude}" style="color:blue" target="_blank">길찾기</a></div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+// 마커에 표시할 인포윈도우를 생성합니다 
+var infowindow = new daum.maps.InfoWindow({
+    content: iwContent // 인포윈도우에 표시할 내용
+});
+
+// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+// 이벤트 리스너로는 클로저를 만들어 등록합니다 
+// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+//인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+</script>
+</c:forEach>
+</c:if>
+
+
+<script>
 //마커가 표시될 위치입니다 
 var markerPosition  = new daum.maps.LatLng(37.525081, 126.888574); 
 
@@ -78,17 +141,43 @@ function displayMarker(locPosition, message) {
 }    
     </script>
  <!-- 지도 표시 부분 -->  
+ 
+ 
+ 
     
 <div id="left_banner_list"><img src="/webApp/resources/left_banner_list.png" id="left_banner_list_icon"/></div>
 <div id="left_banner">
-	오늘 추천된<br/>
-	음식점<br/>
-	리스트
+  		추천리스트
+  <c:if test="${loginStatus == 'Y' }">
+	  <c:if test="${selectLunch!=null}">
+	  <div><br/>점심 추천<br/>${selectLunch}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectLunchpic}" class="LBimg"/></div>
+	  </c:if>
+	  <c:if test="${selectDinner!=null}">
+	  <div >저녁 추천<br/>${selectDinner}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectDinnerpic}" class="LBimg"/></div>
+	  </c:if>
+	  <c:if test="${selectLate!=null}">	  
+	  <div>야식 추천<br/>${selectLate}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectLatepic}" class="LBimg"/></div>
+	  </c:if>
+	  <c:if test="${selectAlcohol!=null}">	  
+	  <div>술안주 추천<br/>${selectAlcohol}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectAlcoholpic}" class="LBimg"/></div>
+	  </c:if>
+	  
+
+  </c:if>
 </div>
 <div id="right_banner_list"><img src="/webApp/resources/right_banner_list.png" id="right_banner_list_icon"/></div>
 <div id="right_banner">
-	실시간<br/>
-	방영맛집
+      <h3>실시간 방영맛집</h3></br><hr>
+         <a href="http://blog.naver.com/jsoofstudio?Redirect=Log&logNo=220771439247" target="_blank">백종원 3대천왕(장칼국수)</a></p>
+         <a href="http://faori2.blog.me/220759682968" target="_blank">백종원 3대천왕(해성횟집)</a></p>
+         <a href="http://for40.blog.me/220769698641" target="_blank">백종원 3대천왕(바로방)</a></p>
+         <a href="http://choimulan62.blog.me/220741523498" target="_blank">수요미식회(긴자 바이린)</a></p>
+         <a href="http://blog.naver.com/tmshingiru?Redirect=Log&logNo=220760721022" target="_blank">수요미식회(광화문집)</a>
+   </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="/webApp/js_css/function.js"></script>

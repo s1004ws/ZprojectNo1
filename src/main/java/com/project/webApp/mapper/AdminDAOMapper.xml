@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.webApp.admin.AdminDAOInterface">
 	<select id="selectAll" resultType="com.project.webApp.admin.AdminVO">
-		select num, cafename, cafemainmenu, cafefavor, cafestar, cafewritedate from cafelist order by num desc
+		select num, cafename, cafemainmenu, cafefavor, cafestar, cafewritedate, latitude, longitude from cafelist order by num desc
 	</select>
 	<select id="totalRecordCount" resultType="int">
 		select count(num) from cafelist

@@ -1,11 +1,25 @@
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% 
+	String cp = request.getContextPath();
+	request.setCharacterEncoding("UTF-8");
+	
+	//쿠기 가져오기
+	Cookie [] ck = request.getCookies();
+
+%>
+
 <html>
 <head>
    <title>Home</title>
    <link href="/webApp/js_css/style.css" rel="stylesheet"/>
    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
    <style>
+   		.LBimg{width:100%;height:90px;text-aling:center}
+   		#left_banner div{color:white}
+   		#LBlunch{text-align:center}
    		#main_area {
 		   display: inline-block;
 		   position: relative;
@@ -129,6 +143,7 @@
 		
 	   .hide-title-bar.ui-dialog-titlebar { display: none; }
 	   .ui-dialog-titlebar { display: none; };
+
    </style>
 </head>
 <body>
@@ -157,13 +172,12 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 
 </script> -->
 </c:forEach> --%>
-<c:forEach var="i" items="${meal}">
 <script>
 
 //마커가 표시될 위치입니다 
 
-var cafeLat =${i.latitude};
-var   cafeLon =${i.longitude};
+var cafeLat =${meal.latitude};
+var   cafeLon =${meal.longitude};
 
 //alert("${i.longitude}");
 
@@ -177,7 +191,7 @@ var marker = new daum.maps.Marker({
 // 마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
 
-var iwContent = '<div style="padding:5px;">${i.cafename}<br> <a href="http://map.daum.net/link/to/${i.cafename},${i.latitude},${i.longitude}" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+var iwContent = '<div style="padding:5px;">${meal.cafename}<br> <a href="http://map.daum.net/link/to/${meal.cafename},${meal.latitude},${meal.longitude}" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
     iwPosition = new daum.maps.LatLng(cafeLat, cafeLon); //인포윈도우 표시 위치입니다
 
 // 인포윈도우를 생성합니다
@@ -189,7 +203,6 @@ var infowindow = new daum.maps.InfoWindow({
 // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 infowindow.open(map, marker); 
 </script>
-</c:forEach>
 </c:if>
 <script>
 
@@ -245,22 +258,47 @@ function displayMarker(locPosition, message) {
 
     </script>
  <!-- 지도 표시 부분 -->   
+<%-- 	<%
+	 Cookie c = new Cookie("sname1",URLEncoder.encode("${i.cafename}","utf-8"));
+	%> --%>
 <div id="left_banner_list"><img src="/webApp/resources/left_banner_list.png" id="left_banner_list_icon"/></div>
 <div id="left_banner">
-   오늘 추천된<br/>
-   음식점<br/>
-   리스트
+  		추천리스트
+  <c:if test="${loginStatus == 'Y' }">
+	  <c:if test="${selectLunch!=null}">
+	  <div><br/>점심 추천<br/>${selectLunch}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectLunchpic}" class="LBimg"/></div>
+	  </c:if>
+	  <c:if test="${selectDinner!=null}">
+	  <div >저녁 추천<br/>${selectDinner}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectDinnerpic}" class="LBimg"/></div>
+	  </c:if>
+	  <c:if test="${selectLate!=null}">	  
+	  <div>야식 추천<br/>${selectLate}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectLatepic}" class="LBimg"/></div>
+	  </c:if>
+	  <c:if test="${selectAlcohol!=null}">	  
+	  <div>술안주 추천<br/>${selectAlcohol}</div>
+	  <div class="LBimg"><img src="/webApp/upload/${selectAlcoholpic}" class="LBimg"/></div>
+	  </c:if>
+	  
+
+  </c:if>
 </div>
 <div id="right_banner_list"><img src="/webApp/resources/right_banner_list.png" id="right_banner_list_icon"/></div>
 <div id="right_banner">
-   실시간<br/>
-   방영맛집
+      <h3>실시간 방영맛집</h3></br><hr>
+         <a href="http://blog.naver.com/jsoofstudio?Redirect=Log&logNo=220771439247" target="_blank">백종원 3대천왕(장칼국수)</a></p>
+         <a href="http://faori2.blog.me/220759682968" target="_blank">백종원 3대천왕(해성횟집)</a></p>
+         <a href="http://for40.blog.me/220769698641" target="_blank">백종원 3대천왕(바로방)</a></p>
+         <a href="http://choimulan62.blog.me/220741523498" target="_blank">수요미식회(긴자 바이린)</a></p>
+         <a href="http://blog.naver.com/tmshingiru?Redirect=Log&logNo=220760721022" target="_blank">수요미식회(광화문집)</a>
+   </div>
 </div>
-<c:forEach var="i" items="${meal}">
 	<div id="main_area" >
 		<div id="item_headr">
 			<div class="item_contain">
-				<div id="cafe-title-name"><h1>${i.cafename}</h1></div>
+				<div id="cafe-title-name"><h1>${meal.cafename}</h1></div>
 			</div>                  
 		</div>
 		<div id="item-body">
@@ -268,46 +306,46 @@ function displayMarker(locPosition, message) {
 				<div id="item-body-left">
 					<div class="item-informatin">
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-tag@2x.png"/></div>
-						<div class="item-informatin-text">메인메뉴 : ${i.cafemainmenu}</div>
+						<div class="item-informatin-text">메인메뉴 : ${meal.cafemainmenu}</div>
 					</div>
 					<div class="item-informatin">   
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-phone@2x.png"/></div>
-						<div class="item-informatin-text">전화번호 : ${i.cafephone}</div>
+						<div class="item-informatin-text">전화번호 : ${meal.cafephone}</div>
 					</div>
 					<div class="item-informatin">   
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-address@2x.png"/></div>
-						<div class="item-informatin-text">주소 : ${i.cafeaddr}</div>
+						<div class="item-informatin-text">주소 : ${meal.cafeaddr}</div>
 					</div>            
 					<div class="item-informatin">   
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-point@2x.png"/></div>
-						<div class="item-informatin-text">취향 : ${i.cafefavor}</div>
+						<div class="item-informatin-text">취향 : ${meal.cafefavor}</div>
 					</div>   
 				</div>
 				<div id="item-body-right">
 					<div class="item-informatin">
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-time@2x.png"/></div>
-						<div class="item-informatin-text">휴무 : ${i.cafeholi}</div>
+						<div class="item-informatin-text">휴무 : ${meal.cafeholi}</div>
 					</div>
 					<div class="item-informatin">   
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-time@2x.png"/></div>
-						<div class="item-informatin-text">영업시간 : ${i.cafetime}</div>
+						<div class="item-informatin-text">영업시간 : ${meal.cafetime}</div>
 					</div>
 					<div class="item-informatin">   
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-time@2x.png"/></div>
-						<div class="item-informatin-text">영업유무 : ${i.cafeshutdown}</div>
+						<div class="item-informatin-text">영업유무 : ${meal.cafeshutdown}</div>
 					</div>            
 					<div class="item-informatin">   
 						<div class="item-informatin-icon"><img src="/webApp/resources/icon-info-service@2x.png"/></div>
-						<div class="item-informatin-text">주차유무 : ${i.cafeparking}</div>
+						<div class="item-informatin-text">주차유무 : ${meal.cafeparking}</div>
 					</div>   
 				</div>
 			</div>
 		</div>
 		   
 		<div id="photo-area">         
-			<img src="/webApp/upload/${i.cafepic1}"/>
-			<img src="/webApp/upload/${i.cafepic2}"/>
-			<img src="/webApp/upload/${i.cafepic3}"/>            
+			<img src="/webApp/upload/${meal.cafepic1}"/>
+			<img src="/webApp/upload/${meal.cafepic2}"/>
+			<img src="/webApp/upload/${meal.cafepic3}"/>            
 		</div> 
 	</div>
 	<script>
@@ -352,13 +390,12 @@ function displayMarker(locPosition, message) {
 	</script>
 	<div id="dialog-choice" title="자아~ 언제 먹을라고?? 나만 믿어!!">
 		<div id="dialog-cover">
-			<div id="taeyeon1"><img src="/webApp/upload/${i.cafepic1}"/></div>
+			<div id="taeyeon1"><img src="/webApp/upload/${meal.cafepic1}"/></div>
 			<div id="taeyeon2"><img src="/webApp/resources/taeyeon.png"/></div>
-			<div id="selectedcafename">상호 : ${i.cafename}</div>
-			<div id="selectedcafemenu">메인메뉴 : ${i.cafemainmenu}</div>
+			<div id="selectedcafename">상호 : ${meal.cafename}</div>
+			<div id="selectedcafemenu">메인메뉴 : ${meal.cafemainmenu}</div>
 			<div id="selected"> 고민하지 말고, 이거나 먹어!!</div>
 		</div>
 	</div>
-</c:forEach>
 </body>
 </html>

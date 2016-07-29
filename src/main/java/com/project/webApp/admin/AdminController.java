@@ -287,14 +287,15 @@ public class AdminController {
 	
 	   @RequestMapping("/selectLunch")
 	   public ModelAndView selectLunch(HttpServletRequest req){
-		  //HttpSession session = req.getSession();
+		  HttpSession session = req.getSession();
 	      AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
-	      List<AdminVO> map= dao.selectLunch();
-	      
-	      //CafeVO vo = map.get(0);
-	      //System.out.println(vo.getCafemainmenu());
-	   
+	      AdminVO map= dao.selectLunch();
+	      	   
 	      ModelAndView mav = new ModelAndView();
+	      
+	      session.setAttribute("selectLunch",map.getCafename());
+	      session.setAttribute("selectLunchpic",map.getCafepic1());
+	      
 	      //mav.addObject("user_email",session.getAttribute("user_email"));
 	      mav.addObject("meal",map);
 	      mav.setViewName("/choice/choice");
@@ -303,12 +304,14 @@ public class AdminController {
 	   }
 	   @RequestMapping("/selectDinner")
 	   public ModelAndView selectDinner(HttpServletRequest req){
-			//HttpSession session = req.getSession();
+		   HttpSession session = req.getSession();
 		   AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
-	      List<AdminVO> map= dao.selectDinner();
+		   AdminVO map= dao.selectDinner();
 	      //System.out.println(map.get(0));
 	      
 	      ModelAndView mav = new ModelAndView();
+	      session.setAttribute("selectDinner",map.getCafename());
+	      session.setAttribute("selectDinnerpic",map.getCafepic1());
 	      //mav.addObject("user_email",session.getAttribute("user_email"));
 	      mav.addObject("meal",map);
 	      mav.setViewName("/choice/choice");
@@ -317,12 +320,14 @@ public class AdminController {
 	   }
 	   @RequestMapping("/selectLate")
 	   public ModelAndView selectLate(HttpServletRequest req){
-			//HttpSession session = req.getSession();
+		   HttpSession session = req.getSession();
 		   AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
-	      List<AdminVO> map= dao.selectLate();
+		   AdminVO map= dao.selectLate();
 	      //System.out.println(map.get(0));
 	      
 	      ModelAndView mav = new ModelAndView();
+	      session.setAttribute("selectLate",map.getCafename());
+	      session.setAttribute("selectLatepic",map.getCafepic1());
 	      //mav.addObject("user_email",session.getAttribute("user_email"));
 	      mav.addObject("meal",map);
 	      mav.setViewName("/choice/choice");
@@ -331,12 +336,14 @@ public class AdminController {
 	   }
 	   @RequestMapping("/selectAlcohol")
 	   public ModelAndView selectAlcohol(HttpServletRequest req){
-			//HttpSession session = req.getSession();
+		   HttpSession session = req.getSession();
 		   AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
-	      List<AdminVO> map= dao.selectAlcohol();
+		   AdminVO map= dao.selectAlcohol();
 	      //System.out.println(map.get(0));
 	      
 	      ModelAndView mav = new ModelAndView();
+	      session.setAttribute("selectAlcohol",map.getCafename());
+	      session.setAttribute("selectAlcoholpic",map.getCafepic1());
 	     // mav.addObject("user_email",session.getAttribute("user_email"));
 	      mav.addObject("meal",map);
 	      mav.setViewName("/choice/choice");
